@@ -97,7 +97,7 @@ public class PushReceiver extends MessageReceiver{
         sendEvent("aliyunPushReceived", params);
     }
 
-    private void sendEvent(String eventName, WritableMap params) {
+    public static void sendEvent(String eventName, WritableMap params) {
       Log.e("sendEvent",eventName+";"+params);
         if (context == null) {
             params.putString("appState", "background");

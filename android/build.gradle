@@ -77,10 +77,10 @@ repositories {
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'com.aliyun.ams:alicloud-android-push:3.4.0'
-    implementation 'com.aliyun.ams:alicloud-android-third-push-huawei:3.4.0'
+    api 'com.aliyun.ams:alicloud-android-push:3.4.0'
+    api 'com.aliyun.ams:alicloud-android-third-push-huawei:3.4.0'
 //    implementation 'com.aliyun.ams:alicloud-android-third-push-oppo:3.4.0'
-    implementation 'com.aliyun.ams:alicloud-android-third-push-xiaomi:3.4.0'
+    api 'com.aliyun.ams:alicloud-android-third-push-xiaomi:3.4.0'
 //    implementation 'com.aliyun.ams:alicloud-android-third-push-vivo:3.4.0'
     //implementation 'com.aliyun.ams:alicloud-android-third-push:3.7.7'
 }

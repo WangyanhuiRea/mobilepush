@@ -316,6 +316,73 @@ app在未启动时收到通知后，点击通知启动app,
 如果在向JS发消息时，JS没准备好或者没注册listener，则先临时保存该消息，
 并提供getInitalMessage方法可以获取，在app的JS逻辑完成后可以继续处理该消息
 
+##### android端需要在Activity里做相应的配置，才能支持app未启动时来的推送在启动时能接收到，例子代码如下：
+```java
+package com.start.A;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+
+import com.alibaba.sdk.android.push.popup.PopupNotifyClick;
+import com.alibaba.sdk.android.push.popup.PopupNotifyClickListener;
+import com.facebook.react.ReactActivity;
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.WritableMap;
+import com.reactlibrary.PushReceiver;
+
+import java.util.Map;
+
+public class MainActivity extends ReactActivity implements PopupNotifyClickListener {
+
+  static final String TAG = "MainActivity";
+
+  PopupNotifyClick popupNotifyClick = new PopupNotifyClick(this);
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    popupNotifyClick.onCreate(this,getIntent());
+  }
+
+  @Override
+  public void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
+    Log.e(TAG,"onNewIntent");
+    Log.e("onNewIntent",intent.toString());
+    popupNotifyClick.onNewIntent(intent);
+  }
+
+  @Override
+  public void onSysNoticeOpened(String title, String content, Map<String, String> extraMap) {
+    Log.e(TAG,"onSysNoticeOpened");
+    WritableMap params = Arguments.createMap();
+    params.putString("body", content);
+    params.putString("title", title);
+    WritableMap extraWritableMap = Arguments.createMap();
+    for (Map.Entry<String, String> entry : extraMap.entrySet()) {
+      extraWritableMap.putString(entry.getKey(),entry.getValue());
+    }
+    params.putMap("extras", extraWritableMap);
+    params.putString("type", "notification");
+    Log.e("onSysNoticeOpened",params.toString());
+    PushReceiver.sendEvent("aliyunPushReceived", params);
+  }
+
+  /**
+   * Returns the name of the main component registered from JavaScript. This is used to schedule
+   * rendering of the component.
+   */
+  @Override
+  protected String getMainComponentName() {
+    return "Start";
+  }
+
+
+}
+
+```
+
 示例:
 ```
 async componentDidMount() {

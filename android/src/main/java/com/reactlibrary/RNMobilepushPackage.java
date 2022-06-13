@@ -48,7 +48,7 @@ public class RNMobilepushPackage implements ReactPackage {
         createNotificationChannel(applicationContext,channel,channelDesc);
         PushServiceFactory.init(applicationContext);
         CloudPushService pushService = PushServiceFactory.getCloudPushService();
-
+        pushService.setLogLevel(CloudPushService.LOG_DEBUG);
         pushService.register(applicationContext, new CommonCallback() {
             @Override
             public void onSuccess(String response) {
