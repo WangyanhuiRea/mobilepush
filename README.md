@@ -4,7 +4,7 @@
 
 ## Getting started
 
-`$ npm install react-native-mobilepush --save`
+`$ npm install git+https://github.com/yebin-sesa524903/mobilepush.git`
 
 ### Mostly automatic installation
 
