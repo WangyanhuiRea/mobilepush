@@ -79,6 +79,16 @@ allprojects {
 	...
   }
 ```
+4.在项目的app module下build.gradle里配置相关推送信息，配置参考如下：
+```gradle
+	manifestPlaceholders=[
+          pushKey:"$pushKey",
+          pushSecret:"$pushSecret",
+          xiaomiId:"$xiaomiId",
+          xiaomiKey:"$xiaomiKey",
+          huaweiAppId:"$huaweiAppId",
+        ]
+```
 
 #### iOS接入SDK
 1.请在项目的AppDelegate.m文件中引入头文件：

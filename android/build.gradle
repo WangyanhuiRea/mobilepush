@@ -34,13 +34,13 @@ android {
             //选择要添加的对应cpu类型的.so库。此处仅为示意，推送支持所有主流类型，请根据设备硬件选择
             abiFilters 'armeabi', 'x86'
         }
-        manifestPlaceholders=[
-          pushKey:"$pushKey",
-          pushSecret:"$pushSecret",
-          xiaomiId:"$xiaomiId",
-          xiaomiKey:"$xiaomiKey",
-          huaweiAppId:"$huaweiAppId",
-        ]
+//         manifestPlaceholders=[
+//           pushKey:"$pushKey",
+//           pushSecret:"$pushSecret",
+//           xiaomiId:"$xiaomiId",
+//           xiaomiKey:"$xiaomiKey",
+//           huaweiAppId:"$huaweiAppId",
+//         ]
     }
     lintOptions {
         abortOnError false
